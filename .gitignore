@@ -1,2 +1,4 @@
 **/.DS_Store
 /photos/**.**
+.DS_Store
+/node_modules/
