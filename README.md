@@ -26,7 +26,10 @@ Simple web based app to display photos.
 - shows the location where the photo was taken
 - Photo count & gallery view
 - progress bar for current photo & all photos
-- basic controls `space` to play/pause `left/right arrows` previous and next image `F` toggles full screen.
+- basic controls 
+    `space` to play/pause 
+    `left/right arrows` previous and next image 
+    `F` toggles full screen
 
 ## Further ideas
 
