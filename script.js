@@ -75,10 +75,18 @@ fullscreenButton.addEventListener('click', () => {
     }
 });
 
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
 async function fetchImagePaths() {
     try {
         const response = await fetch('/images');
         imagePaths = await response.json();
+        shuffleArray(imagePaths);
         if (imagePaths.length > 0) { // Ensure there are images to display
             startSlideshow();
         } else {
@@ -124,7 +132,9 @@ function updateSlideshow() {
     const nextImage = (activeImage === 1) ? slideshowImage2 : slideshowImage1;
     const currentImage = (activeImage === 1) ? slideshowImage1 : slideshowImage2;
 
-    filenameSpan.textContent = imagePaths[nextImageIndex].split('/').pop();
+    // Add photo count to filename
+    const filename = imagePaths[nextImageIndex].split('/').pop();
+    filenameSpan.textContent = `${filename} - ${nextImageIndex + 1}/${imagePaths.length}`;
     nextImage.src = imagePaths[nextImageIndex];
     fetchExifData(imagePaths[nextImageIndex]);
     progressBar.style.width = `${(nextImageIndex + 1) / imagePaths.length * 100}%`;

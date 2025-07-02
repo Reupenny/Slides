@@ -16,8 +16,9 @@ app.get('/images', (req, res) => {
             console.error(err);
             return res.status(500).send('Error reading images folder');
         }
-        const imageFiles = files.filter(file => ['.jpg', '.jpeg', '.png', '.gif'].includes(path.extname(file).toLowerCase()));
+        const imageFiles = files.filter(file => ['.jpg', '.jpeg', '.png', '.gif', '.heic'].includes(path.extname(file).toLowerCase()));
         const imagePaths = imageFiles.map(file => 'photos/' + file);
+        res.setHeader('Access-Control-Allow-Origin', '*');
         res.json(imagePaths);
     });
 });
